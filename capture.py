@@ -28,4 +28,4 @@ def start_capture():
             time.sleep(1 / IMAGES_PER_SECOND)
 
 if __name__ == '__main__':
-    start_caputre()
+    start_capture()
