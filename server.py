@@ -1,7 +1,7 @@
 import os
 from stat import S_ISREG, ST_CTIME, ST_MODE
 
-from flask import Flask, send_file
+from flask import Flask, send_file, status
 
 app = Flask(__name__)
 
@@ -24,4 +24,7 @@ def last_image():
             for stat, path in data if S_ISREG(stat[ST_MODE]))
     last_created_image = sorted(data, reverse=True)[0]
 
-    return send_file(os.path.join(dir_path, last_created_image), mimetype='image/jpeg')
+    if not last_created_image:
+        return  "Image not found", status.HTTP_404_NOT_FOUND
+
+    return send_file(os.path.join(dir_path, last_created_image[1]), mimetype='image/jpeg')
