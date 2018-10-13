@@ -2,9 +2,9 @@ import time
 import picamera
 
 
-IMAGES_PER_SECOND = 5
-RESOLUTION = (2560, 1920)
-FRAME_RATE = 30
+IMAGES_PER_SECOND = 2
+RESOLUTION = (1920, 1080)
+FRAME_RATE = 16
 
 def start_capture():
     with picamera.PiCamera() as camera:

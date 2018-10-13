@@ -50,3 +50,6 @@ webpack-stats.json
 .git-credentials
 id_rsa
 id_rsa.pub
+
+.idea
+.idea/*
