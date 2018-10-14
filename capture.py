@@ -22,8 +22,6 @@ def start_capture():
         camera.awb_mode = 'off'
         camera.awb_gains = g
 
-        camera.start_preview()
-
         for filename in camera.capture_continuous('images/img{timestamp}.jpg'):
             print('Captured %s' % filename)
             time.sleep(1 / IMAGES_PER_SECOND)
