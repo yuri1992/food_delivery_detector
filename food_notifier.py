@@ -2,6 +2,7 @@ import logging
 import os
 import threading
 import time
+import requests
 from stat import S_ISREG, ST_CTIME, ST_MODE
 
 import numpy as np
@@ -33,25 +34,14 @@ class FoodNotifier(object):
 
     def run(self):
         threading.Thread(target=self.food_detector).run()
-        threading.Thread(target=self.images_rsync).run()
+        #threading.Thread(target=self.images_rsync).run()
 
     def get_last_image(self):
-        dir_path = os.path.join(os.getcwd(), 'images')
-
-        # all entries in the directory w/ stats
-        data = (os.path.join(dir_path, fn) for fn in os.listdir(dir_path))
-        data = ((os.stat(path), path) for path in data)
-
-        # regular files, insert creation date
-        data = ((stat[ST_CTIME], path)
-                for stat, path in data if S_ISREG(stat[ST_MODE]))
-        last_created_image = sorted(data, reverse=True)[0]
-
-        if not last_created_image:
-            return False
-
-        time.sleep(1)
-        return last_created_image
+        name = '%s.jpg' % str(time.time())
+        f = open(name, 'wb')
+        f.write(requests.get('http://172.16.1.151:5000/live').content)
+        f.close()
+        return name
 
     def is_food_onimage(self, image):
         im = self.val_tfms(open_image(f'{image}'))
