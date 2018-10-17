@@ -1,5 +1,6 @@
 import os
 from stat import S_ISREG, ST_CTIME, ST_MODE
+from time import sleep
 
 from flask import Flask, send_file
 
@@ -25,6 +26,6 @@ def last_image():
     last_created_image = sorted(data, reverse=True)[0]
 
     if not last_created_image:
-        return  "Image not found", 400
-
+        return "Image not found", 400
+    sleep(1)
     return send_file(os.path.join(dir_path, last_created_image[1]), mimetype='image/jpeg')

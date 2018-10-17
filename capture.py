@@ -3,7 +3,7 @@ import picamera
 
 
 # Approx 1.5m per image - 10GB per hour when taking 2 photos every second.
-IMAGES_PER_SECOND = 2
+IMAGES_PER_SECOND = 0.1
 RESOLUTION = (1920, 1080)
 FRAME_RATE = 16
 
