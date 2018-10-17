@@ -1,6 +1,0 @@
-
-slackclient
-
-numpy
-flask
-picamera

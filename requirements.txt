@@ -1,0 +1,8 @@
+
+slackclient
+
+numpy
+flask
+picamera
+fastai
+torchvision

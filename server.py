@@ -4,9 +4,11 @@ from time import sleep
 
 from flask import Flask, send_file
 
+from food_notifier import food_notifier
+
 app = Flask(__name__)
 
-
+food_notifier.run()
 @app.route("/")
 def hello():
     return "Hello World!"
@@ -29,3 +31,5 @@ def last_image():
         return "Image not found", 400
     sleep(1)
     return send_file(os.path.join(dir_path, last_created_image[1]), mimetype='image/jpeg')
+
+
